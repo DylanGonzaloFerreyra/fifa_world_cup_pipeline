@@ -11,6 +11,7 @@ import psycopg2
 import os
 
 def scrape_fifa_raw():
+    # Scrape data from Wikipedia and load it into a Pandas DataFrame.
     wiki_url = 'https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals'
     table_class = 'sortable plainrowheaders wikitable jquery-tablesorter'
     headers = {
@@ -28,6 +29,7 @@ def scrape_fifa_raw():
     with engine.begin() as conn:
         conn.execute(text("CREATE SCHEMA IF NOT EXISTS staging;"))
         conn.execute(text("CREATE SCHEMA IF NOT EXISTS analytics;"))
+    #Upload the raw data to the 'staging' schema in PostgreSQL.
     df.to_sql(
         name='fifa_raw_finals',  
         con=engine,  
@@ -51,17 +53,18 @@ with DAG(
     schedule_interval='@weekly', 
     catchup=False, 
 ) as dag: 
-
+    # Task to execute the Python scraping function.
     scrape_task = PythonOperator(
         task_id='scrape_fifa_raw_data', 
         python_callable=scrape_fifa_raw, 
     ) 
+    # Task to run the dbt transformation for FIFA World Cup finals.
     dbt_run_task = BashOperator(
         task_id='dbt_run_fifa_world_cup_finals', 
         bash_command=(
             'export PATH=$PATH:/home/airflow/.local/bin:/usr/local/bin && ' 
-            'cd /opt/airflow/dags/transforms && ' 
-            'dbt run --select fifa_world_cup_finals' 
+            'cd /opt/airflow/transformation && ' 
+            'dbt run --profiles-dir . --select fifa_world_cup_finals --full-refresh' 
         ),
     ) 
     scrape_task >> dbt_run_task

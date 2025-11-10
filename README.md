@@ -1,89 +1,257 @@
-Lo que tendría que hacer es:
+# Data Engineer Challenge
+## Español
+Este proyecto consiste en construir un pequeño pipeline de datos para extraer, transformar y analizar los resultados de las finales de la Copa Mundial de la FIFA, usando herramientas modernas como Airflow, Docker, PostgreSQL y dbt.
 
-Por ahora, creo una carpeta "Wollen Labs Data Engineer Challenge" donde está "scrapping", "jobs" y "transformation",
+----------
 
-- Ya tengo andando el container (**wollenlabsdataengineerchallenge-postgres-1**) ofical de postgres para **crar la DB local PostgreSQL**.
+## Estructura del proyecto
 
-![image.png](attachment:11356430-9856-4900-a5ac-330529a2ca01:image.png)
+```
+fifa_world_cup_data_pipeline/
+├── scrapping/           # Código Python para extraer datos de Wikipedia
+├── dags/                # DAGs de Airflow para orquestar el pipeline
+├── transformation/      # Proyecto dbt para transformar los datos
+├── docker-compose.yml   # Infraestructura local con Docker
+├── Dockerfile           # Imagen personalizada para Airflow + dependencias
+├──queries
+├──postgres
+├── .env.example         # Variables de entorno necesarias
+└── README.md            # Este archivo
 
-Por ahora, cree un Docker-Compose con el contenedor postgre y me conecte a èl con Outerbase Studio para administrarlo
-
-- En docker creo un contenedor oficial de Airflow (2) donde le meto mi codigo que roba la tabla de la wiki y le instalo todo lo necesario(**Pandas, Poetry, request,**dbt, SQLAlchemy para Airflow  **etc**) y que el dag de airflow ejecute ese codigio y dentro del dag escribir el codigo que ejecute la carga de los datos crudos a mi DB local de PostgreSQL inicial de los datos crudos a tu DB de PostgreSQL y posteriormente la transformacion con DBT (Ver qué podría hacerle, cambiar los nombres, y comprobaciones basicas boludas).
-
-(en el “Cómo Ejecutar Localmente” del Readme voy a tener que explicar cómo crear un .env.example: ) 
-
-```jsx
-POSTGRES_USER=”POSTGRES_USER”
-POSTGRES_PASSWORD=”POSTGRES_PASSWORD”
-AIRFLOW_SECRET_KEY= “AIRFLOW_SECRET_KEY”
-AIRFLOW_USER=”AIRFLOW_USER”
-AIRFLOW_PASSWORD=”AIRFLOW_PASSWORD”
 ```
 
-Iba a usar pgadmin pero me está dando mil problemas, mejor Outerbase Studio
+----------
 
-Saqué la adaptación de pip a poetry en el dockerfile de esta pagina https://stackoverflow.com/questions/53835198/integrating-python-poetry-with-docker?utm_source=chatgpt.com 
+##  ¿Qué hace este proyecto?
 
-Tambien tengo que hacer un dockerfile donde defino la version de airflow, python y las dependencias necesarias para el proyecto, además del user airflow.
+-   **Extraer (E):** Un script Python utiliza `requests` y `pandas` para obtener la tabla de resultados de Wikipedia.
+    
+-   **Cargar (L):** El DAG de Airflow (`jobs/`) usa `psycopg2` para cargar los datos _crudos_ directamente al _schema raw_ en PostgreSQL.
+    
+-   **Transformar (T):** **dbt** (Data Build Tool) se ejecuta sobre el _schema raw_ para aplicar lógica de negocio y limpieza, creando el modelo final analítico (`fifa_world_cup_finals`).
+----------
 
-TRANFORMACION:
-Considere que había que sacar de la tabla el 2026 ya que afectaría a las metricas al ser valores NULL
--En transformacion pasé todo a minuscula y con _
--considero que Ref. propio de wikipedia era innecesario
--Dividir score en GOALS_WINNER y GOALS_RUNNER_UP e info extra del partido
--Dividir "location" ej: "Montevideo, Uruguay" a host_city:Montevideo y host_country: Uruguay
+## Stack tecnológico
 
-![image.png](attachment:361e7b22-5d7b-4ad7-bb24-3552576a49a8:image.png)
+-   **Docker + Docker Compose**: Infraestructura local
+-   **PostgreSQL**: Base de datos relacional
+-   **Apache Airflow**: Orquestación de tareas
 
-En lugar de pip, utilizaré poetry, al ser mas completo y darle los requerimientos
+-   **dbt (Data Build Tool)**: Transformación de datos en SQL
+-   **Outerbase Studio**: Cliente visual para PostgreSQL (alternativa a pgAdmin)
 
-![image.png](attachment:60e73dc2-8dd8-4d49-9326-aaa5a101cd7d:image.png)
+----------
 
-Diez mil errores, razón? no me toma los datos del .env, así que a especificar en todos los servicios.
+## Cómo correrlo localmente
 
-![image.png](attachment:9710641b-019f-4092-ab26-a0f0d8a74c83:image.png)
+1.  Cloná el repo y creá tu archivo `.env`:
 
-Poetry supusetamente ya debería estar bien (el avast me lo había borrado 🙂)
+```bash
+cp .env.example .env
+```
 
-tengo como 100 mensajes de error de que `FATAL: database "admin" does not exist` 
+2.  Completá tus credenciales en `.env`:
 
-![image.png](attachment:8a5370c2-c372-411e-9d14-a27cb1dc5f26:image.png)
+```env
+POSTGRES_USER=tu_usuario
+POSTGRES_PASSWORD=tu_password
+AIRFLOW_SECRET_KEY=clave_secreta
+AIRFLOW_USER=admin
+AIRFLOW_PASSWORD=admin
+```
 
-Funciona!
+3.  Levantá los servicios:
 
-![image.png](attachment:10da9e8d-f6eb-4d56-b37e-25439f093404:image.png)
+```bash
+docker-compose up --build
+```
 
-Errores en este caso por usar intentar iniciar el proyeco dbt usando python 1.14 cuando debí haber usado algo como 1.11 o 1.13.
+4.  Accedé a Airflow en `http://localhost:8080` y ejecutá el DAG.
 
-![image.png](attachment:819b65b2-f072-4125-b26f-a372cbff9c85:image.png)
+----------
 
-https://docs.getdbt.com/faqs/Core/install-python-compatibility
+##  Proceso de desarrollo
 
-Me siguió dando error el dbt, así que voy a usar python 3.10.
 
-![image.png](attachment:58ea1e6d-e25d-4090-b3c6-f1b009c19087:image.png)
+###  Setup inicial
+![raw_table](images/outerbase_relationship_diagram_raw.png)
+-   Contenedor oficial de PostgreSQL (`fifa_world_cup_data_pipeline-postgres-1`) corriendo con Docker.
+-   Conexión a la base usando **Outerbase Studio**, cliente minimalista de Bases de Datos SQL y Open Source.
+-   DAG de Airflow que ejecuta el scraping y carga los datos crudos a PostgreSQL. 
+	- Dado que la tabla de resultados del Mundial se actualiza solo **cada cuatro años**, el uso de Airflow podría considerarse excesivo. Sin embargo, se eligió Airflow para **demostrar la capacidad de orquestar** un pipeline completo.
+-   Dockerfile personalizado con `pandas`, `requests`, `dbt-postgres`, `SQLAlchemy`, etc.
 
-Para qué init.sql? para guardar logs y demás info de airflow por las dudas.
+###  Transformación
 
-- En el código robo la tabla de wiki (✅)
-- Cargarlo en mi DataWarehouse o base de datos local (Esto será jodido) (Por ahora es un pandas DataFrame voy de manera local instalar **psycopg2** para mandar el df a la db del container postgres)
-- No sé en qué etapa vendría esta parte: (- Tiene que ser "indempondent" y "reproducibility": " si ejecutas 2 veces el mismo job no sobre escribas datos ya existentes, preferiblemente no proceses datos innecesarios y no termines con duplicados": Para lo cual usaré
+![clean_table](images/outerbase_relationship_diagram_clean.png)-   Eliminé el año 2026 (datos incompletos) y la columna `Ref.` por irrelevancia al ser para refenciaciones de Wikipedia.
+-   Renombré columnas a snake_case.
+-   Separé `score` en `winner_goals`, `runner_up_goals` `penalties_winner` y  `penalties_runner_up`.
+-   Dividí `location` en `host_city` y `host_country`.
 
-Aunque me suena mas a DeltaLoad
+###  PostgreSQL + dbt
+----------
 
-**Full Refresh (Truncate and Load)**, porque:
+-   Usé `psycopg2` para cargar el DataFrame a la base.
+-   Implementé un modelo dbt llamado `fifa_world_cup_finals`.
+-   Elegí un enfoque **Full Refresh (Truncate and Load)** por simplicidad e idempotencia:
+    -   La tabla es pequeña.
+    -   Solo cambia cada 4 años.
+    -   Evita duplicados y garantiza reproducibilidad.
 
-Cumple con **Idempotencia** al borrar (TRUNCATE) y volver a cargar (INSERT) todos los datos en cada ejecución, garantizando que la tabla final siempre reflejará la exacta tabla de Wikipedia, sin riesgo de duplicados o datos obsoletos por ejecuciones fallidas o similar.
 
-**La tabla es pequeña**, no le veo sentido a complejizarlo con *Delta Load* (es decir, comprobar qué filas son nuevas, cuáles cambiaron, etc). Además La tabla **solo cambia una vez cada cuatro años**, cuando se añade una nueva fila. No hay actualizaciones intermedias de filas existentes).
 
-Hacer la **Transformacion** con la DB usando DBT [dbt-postgres] (porque está diseñado específicamente para la **transformacion de datos** elegí DBT por sobre SQLAlchemy ya que este ultimo es más general) y voy a usar PostgreSQL.
+##  Consultas analíticas incluidas
 
-- Que la tabla final para su análisis sea: year, host, finalists,
+-   Países con más finales jugadas
+-   Países con más goles en finales
+-   Final con mayor diferencia de gol
+-   Países que cambiaron de estadio
+-   Final con mayor asistencia
+-   Finales decididas por penales
 
-and result y los que sienta que tambien son importantes. (Con pandas y DBT).
+----------
 
-- Llamarlo fifa_world_cup_finals
+##  A mejorar
 
-- Un reporte ligerito (notebook/SQL or a minimal dashboard)) con algunos ejemplos de consultas en el modelo analítico (hecho con los datos obtenidos del codigo final pandas).
-- Preparar un repositorio (por ahora oculto) donde el README explique todo (por ahora nada porque no hice nada), poner esquema ya sea una estructura de estrella o copo de nieve."# fifa_world_cup_pipeline" 
+-   Agregar tests de calidad de datos en dbt.
+-   Automatizar validaciones con Great Expectations.
+-   Agregar logs y monitoreo con Airflow + Slack.
+
+## Referencias y Fuentes de datos
+
+-   **Tutorial de Scraping:** [Jie Jenn Web Scraping Wikipedia tables using Python](https://www.youtube.com/watch?v=ICXR9nDbudk)
+- **Fuente de Datos Principal (Scraping):** [List of FIFA World Cup finals](https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals)
+
+---
+## ENGLISH
+
+
+## Project Overview
+
+This project builds a small data pipeline to extract, transform, and analyze the results of FIFA World Cup finals using modern tools like Airflow, Docker, PostgreSQL, and dbt.
+
+----------
+
+## Project Structure
+
+```
+fifa_world_cup_data_pipeline/
+├── scrapping/           # Python code to extract data from Wikipedia
+├── dags/                # Airflow DAGs to orchestrate the pipeline
+├── transformation/      # dbt project for data transformation
+├── docker-compose.yml   # Local infrastructure with Docker
+├── Dockerfile           # Custom image for Airflow + dependencies
+├── queries
+├── postgres
+├── .env.example         # Required environment variables
+└── README.md            # This file
+
+```
+
+----------
+
+## What does this project do?
+
+-   **Extract (E):** A Python script uses `requests` and `pandas` to fetch the results table from Wikipedia.
+    
+-   **Load (L):** The Airflow DAG (`jobs/`) uses `psycopg2` to load the raw data directly into the _raw schema_ in PostgreSQL.
+    
+-   **Transform (T):** **dbt** (Data Build Tool) runs on the _raw schema_ to apply business logic and cleaning, producing the final analytical model (`fifa_world_cup_finals`).
+    
+
+----------
+
+## Tech Stack
+
+-   **Docker + Docker Compose**: Local infrastructure
+-   **PostgreSQL**: Relational database
+-   **Apache Airflow**: Task orchestration
+-   **dbt (Data Build Tool)**: SQL-based data transformation
+-   **Outerbase Studio**: Visual PostgreSQL client (alternative to pgAdmin)
+
+----------
+
+## How to run locally
+
+1.  Clone the repo and create your `.env` file:
+
+```bash
+cp .env.example .env
+
+```
+
+2.  Fill in your credentials in `.env`:
+
+```env
+POSTGRES_USER=your_user
+POSTGRES_PASSWORD=your_password
+AIRFLOW_SECRET_KEY=secret_key
+AIRFLOW_USER=admin
+AIRFLOW_PASSWORD=admin
+
+```
+
+3.  Start the services:
+
+```bash
+docker-compose up --build
+
+```
+
+4.  Access Airflow at `http://localhost:8080` and run the DAG.
+
+----------
+
+## Development Process
+
+### Initial Setup
+
+
+![raw_table](images/outerbase_relationship_diagram_raw.png)-   Official PostgreSQL container (`fifa_world_cup_data_pipeline-postgres-1`) running via Docker.
+-   Connected to the database using **Outerbase Studio**, a minimalist open-source SQL client.
+-   Airflow DAG performs scraping and loads raw data into PostgreSQL.
+    -   Since the World Cup results table updates only **every four years**, using Airflow might seem excessive. However, it was chosen to **demonstrate full pipeline orchestration**.
+-   Custom Dockerfile includes `pandas`, `requests`, `dbt-postgres`, `SQLAlchemy`, etc.
+
+### Transformation
+
+
+![clean_table](images/outerbase_relationship_diagram_clean.png)-   Removed the year 2026 (incomplete data) and the `Ref.` column (used only for Wikipedia references).
+-   Renamed columns to snake_case.
+-   Split `score` into `winner_goals`, `runner_up_goals`, `penalties_winner`, and `penalties_runner_up`.
+-   Split `location` into `host_city` and `host_country`.
+
+### PostgreSQL + dbt
+
+-   Used `psycopg2` to load the DataFrame into the database.
+-   Implemented a dbt model named `fifa_world_cup_finals`.
+-   Chose a **Full Refresh (Truncate and Load)** approach for simplicity and idempotency:
+    -   The table is small.
+    -   It only changes every 4 years.
+    -   Avoids duplicates and ensures reproducibility.
+
+----------
+
+## Included Analytical Queries
+
+-   Countries with most finals played
+-   Countries with most goals in finals
+-   Final with the largest goal difference
+-   Countries that changed stadiums
+-   Final with highest attendance
+-   Finals decided by penalties
+
+----------
+
+## Improvements to Consider
+
+-   Add data quality tests in dbt
+-   Automate validations with Great Expectations
+-   Add logging and monitoring with Airflow + Slack
+
+## References and Data Sources
+
+-   **Scraping Tutorial:** [Jie Jenn - Web Scraping Wikipedia tables using Python](https://www.youtube.com/watch?v=ICXR9nDbudk)
+-   **Main Data Source (Scraping):** [List of FIFA World Cup finals](https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals)
+
+

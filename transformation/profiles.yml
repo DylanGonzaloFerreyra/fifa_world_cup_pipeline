@@ -1,0 +1,14 @@
+fifa_dbt_proj:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres
+      user: "{{ env_var('POSTGRES_USER') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      port: 5432
+      dbname: "{{ env_var('DW_DB_NAME') }}"
+      schema: analytics
+      threads: 4
+      keepalives_idle: 0
+

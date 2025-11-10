@@ -20,7 +20,9 @@ services:
       retries: 5
 
   airflow-init:
-    image: apache/airflow:2.8.1
+    build:
+      context: .
+      dockerfile: dockerfile
     env_file:
       - .env
     depends_on:
@@ -46,9 +48,12 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./transformation:/opt/airflow/transformation
 
   airflow-webserver:
-    image: apache/airflow:2.8.1
+    build:
+      context: .
+      dockerfile: dockerfile
     restart: always
     ports:
       - "8080:8080"
@@ -67,6 +72,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./transformation:/opt/airflow/transformation
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
@@ -74,7 +80,9 @@ services:
       retries: 5
 
   airflow-scheduler:
-    image: apache/airflow:2.8.1
+    build:
+      context: .
+      dockerfile: dockerfile
     restart: always
     env_file:
       - .env
@@ -91,6 +99,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./transformation:/opt/airflow/transformation
 
 volumes:
   postgres_data:
