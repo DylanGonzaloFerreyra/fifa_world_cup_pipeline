@@ -11,7 +11,6 @@ Este proyecto consiste en construir un pequeño pipeline de datos para extraer, 
 
 ```
 fifa_world_cup_data_pipeline/
-├── scrapping/           # Código Python para extraer datos de Wikipedia
 ├── dags/                # DAGs de Airflow para orquestar el pipeline
 ├── transformation/      # Proyecto dbt para transformar los datos
 ├── docker-compose.yml   # Infraestructura local con Docker
@@ -154,7 +153,6 @@ This project builds a small data pipeline to extract, transform, and analyze the
 
 ```
 fifa_world_cup_data_pipeline/
-├── scrapping/           # Python code to extract data from Wikipedia
 ├── dags/                # Airflow DAGs to orchestrate the pipeline
 ├── transformation/      # dbt project for data transformation
 ├── docker-compose.yml   # Local infrastructure with Docker
