@@ -10,7 +10,7 @@ logs/
 pg_data/
 dags/logs
 
-
+bfg.jar
 transformation/target/
 transformation/dbt_packages/
 transformation/logs/
