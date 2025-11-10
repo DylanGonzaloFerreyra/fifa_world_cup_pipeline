@@ -9,7 +9,8 @@ dags/__pycache__/
 logs/
 pg_data/
 dags/logs
-
+fifa_world_cup_pipeline.git/
+fifa_world_cup_pipeline.git.bfg-report/
 bfg.jar
 transformation/target/
 transformation/dbt_packages/
