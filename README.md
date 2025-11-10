@@ -1,5 +1,7 @@
 # Data Engineer Challenge
 ## Español
+##  Descripción general
+
 Este proyecto consiste en construir un pequeño pipeline de datos para extraer, transformar y analizar los resultados de las finales de la Copa Mundial de la FIFA, usando herramientas modernas como Airflow, Docker, PostgreSQL y dbt.
 
 ----------
@@ -13,8 +15,8 @@ fifa_world_cup_data_pipeline/
 ├── transformation/      # Proyecto dbt para transformar los datos
 ├── docker-compose.yml   # Infraestructura local con Docker
 ├── Dockerfile           # Imagen personalizada para Airflow + dependencias
-├──queries
-├──postgres
+├──queries			     #Consultas SQL que demuestran la utilidad del dataset final
+├──postgres				 #Archivos de configuración inicial para la base de datos.
 ├── .env.example         # Variables de entorno necesarias
 └── README.md            # Este archivo
 
@@ -26,7 +28,7 @@ fifa_world_cup_data_pipeline/
 
 -   **Extraer (E):** Un script Python utiliza `requests` y `pandas` para obtener la tabla de resultados de Wikipedia.
     
--   **Cargar (L):** El DAG de Airflow (`jobs/`) usa `psycopg2` para cargar los datos _crudos_ directamente al _schema raw_ en PostgreSQL.
+-   **Cargar (L):** El DAG de Airflow (`dags/`) usa `psycopg2` para cargar los datos _crudos_ directamente al _schema raw_ en PostgreSQL.
     
 -   **Transformar (T):** **dbt** (Data Build Tool) se ejecuta sobre el _schema raw_ para aplicar lógica de negocio y limpieza, creando el modelo final analítico (`fifa_world_cup_finals`).
 ----------
@@ -83,9 +85,24 @@ docker-compose up --build
 
 ###  Transformación
 
-![clean_table](images/outerbase_relationship_diagram_clean.png)-   Eliminé el año 2026 (datos incompletos) y la columna `Ref.` por irrelevancia al ser para refenciaciones de Wikipedia.
+![clean_table](images/outerbase_relationship_diagram_clean.png)
+
+| Columna | Tipo de Dato | Explicación y Origen |
+| :--- | :--- | :--- |
+| **`year`** | `integer` | Año en que se celebró la final del Mundial. |
+| **`winners`** | `text` | Nombre del país ganador del partido. |
+| **`runners_up`** | `text` | Nombre del país subcampeón (perdedor) del partido. |
+| **`venue`** | `text` | Nombre del estadio o lugar donde se jugó la final. |
+| **`attendance`** | `integer` | Número total de espectadores que asistieron a la final. |
+| **`host_city`** | `text` | Ciudad anfitriona donde se celebró el partido. (Derivado de la columna `Location` original). |
+| **`host_country`** | `text` | País anfitrión donde se celebró el partido. (Derivado de la columna `Location` original). |
+| **`winner_goals`** | `integer` | Goles marcados por el equipo ganador durante el tiempo reglamentario y extra (excluyendo penales). (Derivado de la columna `Score` original). |
+| **`runner_up_goals`** | `integer` | Goles marcados por el equipo subcampeón durante el tiempo reglamentario y extra (excluyendo penales). (Derivado de la columna `Score` original). |
+| **`winner_penalties`** | `integer` | Goles marcados por el ganador en la tanda de penales (si aplica). **Si el partido no fue a penales, el valor es 0** para mantener la consistencia numérica y evitar nulos. |
+| **`runner_up_penalties`** | `integer` | Goles marcados por el subcampeón en la tanda de penales (si aplica). **Si el partido no fue a penales, el valor es 0** para mantener la consistencia numérica y evitar nulos. |
+-   Eliminé el año 2026 (datos incompletos) y la columna `Ref.` (utilizado sólo para referencias de Wikipedia).
 -   Renombré columnas a snake_case.
--   Separé `score` en `winner_goals`, `runner_up_goals` `penalties_winner` y  `penalties_runner_up`.
+-   Separé `score` en `winner_goals`, `runner_up_goals` `winner_penalties` y  `runner_up_penalties`.
 -   Dividí `location` en `host_city` y `host_country`.
 
 ###  PostgreSQL + dbt
@@ -141,8 +158,8 @@ fifa_world_cup_data_pipeline/
 ├── transformation/      # dbt project for data transformation
 ├── docker-compose.yml   # Local infrastructure with Docker
 ├── Dockerfile           # Custom image for Airflow + dependencies
-├── queries
-├── postgres
+├── queries  			 #SQL queries demonstrating the usefulness of the final dataset
+├── postgres             #Initial database configuration files.
 ├── .env.example         # Required environment variables
 └── README.md            # This file
 
@@ -154,7 +171,7 @@ fifa_world_cup_data_pipeline/
 
 -   **Extract (E):** A Python script uses `requests` and `pandas` to fetch the results table from Wikipedia.
     
--   **Load (L):** The Airflow DAG (`jobs/`) uses `psycopg2` to load the raw data directly into the _raw schema_ in PostgreSQL.
+-   **Load (L):** The Airflow DAG (`dags/`) uses `psycopg2` to load the raw data directly into the _raw schema_ in PostgreSQL.
     
 -   **Transform (T):** **dbt** (Data Build Tool) runs on the _raw schema_ to apply business logic and cleaning, producing the final analytical model (`fifa_world_cup_finals`).
     
@@ -214,9 +231,23 @@ docker-compose up --build
 -   Custom Dockerfile includes `pandas`, `requests`, `dbt-postgres`, `SQLAlchemy`, etc.
 
 ### Transformation
+![clean_table](images/outerbase_relationship_diagram_clean.png)
 
+| Column | Data Type | Explanation and Origin |
+| :--- | :--- | :--- |
+| **`year`** | `integer` | The year the World Cup final was held. |
+| **`winners`** | `text` | Name of the winning country. |
+| **`runners_up`** | `text` | Name of the runner-up country (losing finalist). |
+| **`venue`** | `text` | Name of the stadium or place where the final was played. |
+| **`attendance`** | `integer` | Total number of spectators who attended the final. |
+| **`host_city`** | `text` | Host city where the match was held. (Derived from the original `Location` column). |
+| **`host_country`** | `text` | Host country where the match was held. (Derived from the original `Location` column). |
+| **`winner_goals`** | `integer` | Goals scored by the winning team during regular and extra time (excluding penalties). (Derived from the original `Score` column). |
+| **`runner_up_goals`** | `integer` | Goals scored by the runner-up team during regular and extra time (excluding penalties). (Derived from the original `Score` column). |
+| **`winner_penalties`** | `integer` | Goals scored by the winner in the penalty shootout (if applicable). **If the match did not go to penalties, the value is 0** to maintain numerical consistency and avoid nulls. |
+| **`runner_up_penalties`** | `integer` | Goals scored by the runner-up in the penalty shootout (if applicable). **If the match did not go to penalties, the value is 0** to maintain numerical consistency and avoid nulls. |
 
-![clean_table](images/outerbase_relationship_diagram_clean.png)-   Removed the year 2026 (incomplete data) and the `Ref.` column (used only for Wikipedia references).
+-   Removed the year 2026 (incomplete data) and the `Ref.` column (used only for Wikipedia references).
 -   Renamed columns to snake_case.
 -   Split `score` into `winner_goals`, `runner_up_goals`, `penalties_winner`, and `penalties_runner_up`.
 -   Split `location` into `host_city` and `host_country`.
@@ -253,5 +284,7 @@ docker-compose up --build
 
 -   **Scraping Tutorial:** [Jie Jenn - Web Scraping Wikipedia tables using Python](https://www.youtube.com/watch?v=ICXR9nDbudk)
 -   **Main Data Source (Scraping):** [List of FIFA World Cup finals](https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals)
+
+
 
 

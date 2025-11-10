@@ -1,1 +1,0 @@
-{"_invocation_id": "189578d5-49b6-4b3f-a3d2-0404b461add6", "linked": {"0": {"name": "source.transformation.staging.fifa_raw_finals", "type": "source", "succ": [1]}, "1": {"name": "model.transformation.fifa_world_cup_finals", "type": "model"}}}

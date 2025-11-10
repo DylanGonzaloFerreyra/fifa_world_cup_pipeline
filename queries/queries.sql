@@ -39,7 +39,7 @@ ORDER BY attendance DESC
 LIMIT 1;
 
 -- finals_decided_by_penalties
-SELECT year, winners, runners_up, penalties_winner, penalties_runner_up
+SELECT year, winners, runners_up, winner_penalties, runner_up_penalties
 FROM fifa_finals_clean
-WHERE penalties_winner IS NOT NULL AND penalties_runner_up IS NOT NULL
+WHERE winner_penalties IS NOT NULL AND runner_up_penalties IS NOT NULL
 ORDER BY year DESC;
