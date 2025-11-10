@@ -1,0 +1,191 @@
+[0m08:58:26.489486 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018B680FC6A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018B6A2F38E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018B6A2F0EB0>]}
+
+
+============================== 08:58:26.505117 | 4f7da653-ddc2-428b-954f-c72bcf064aa4 ==============================
+[0m08:58:26.505117 [info ] [MainThread]: Running with dbt=1.10.13
+[0m08:58:26.505117 [debug] [MainThread]: running dbt with arguments {'target_path': 'None', 'log_format': 'default', 'use_colors': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\Dylan\\.dbt', 'warn_error': 'None', 'log_path': 'logs', 'partial_parse': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'version_check': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'invocation_command': 'dbt init models', 'printer_width': '80', 'write_json': 'True'}
+[0m08:58:26.621918 [debug] [MainThread]: Starter project path: C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\py_ent\Scripts\py_ent\lib\site-packages\dbt\include\starter_project
+[0m08:58:26.638563 [info ] [MainThread]: 
+Your new dbt project "models" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m08:58:26.639663 [info ] [MainThread]: Setting up your profile.
+[0m09:11:36.618079 [info ] [MainThread]: Profile models written to C:\Users\Dylan\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m09:11:36.620557 [debug] [MainThread]: Command `dbt init` succeeded at 09:11:36.620557 after 790.24 seconds
+[0m09:11:36.620557 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018B680FC6A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018B6A2B5960>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018B6A2B6E00>]}
+[0m09:11:36.621769 [debug] [MainThread]: Flushing usage events
+[0m09:11:37.523433 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:57:36.289754 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A2AD47C700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A2AE6675E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A2AE667CA0>]}
+
+
+============================== 09:57:36.298799 | 3932fd19-b91a-494f-b074-5c6da3ce0d2e ==============================
+[0m09:57:36.298799 [info ] [MainThread]: Running with dbt=1.10.13
+[0m09:57:36.299800 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt debug', 'printer_width': '80', 'write_json': 'True', 'no_print': 'None', 'log_format': 'default', 'warn_error': 'None', 'log_path': 'logs', 'partial_parse': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': 'C:\\Users\\Dylan\\.dbt', 'use_colors': 'True', 'cache_selected_only': 'False', 'target_path': 'None'}
+[0m09:57:36.333918 [info ] [MainThread]: dbt version: 1.10.13
+[0m09:57:36.334925 [info ] [MainThread]: python version: 3.10.0
+[0m09:57:36.335925 [info ] [MainThread]: python path: C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\py_ent\Scripts\py_ent\Scripts\python.exe
+[0m09:57:36.335925 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m09:57:36.416326 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.snowflake'
+[0m09:57:36.417858 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.snowflake'
+[0m09:57:36.418864 [info ] [MainThread]: Using profiles dir at C:\Users\Dylan\.dbt
+[0m09:57:36.418864 [info ] [MainThread]: Using profiles.yml file at C:\Users\Dylan\.dbt\profiles.yml
+[0m09:57:36.419864 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml
+[0m09:57:36.419864 [info ] [MainThread]: Configuration:
+[0m09:57:36.420866 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m09:57:36.420866 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m09:57:36.420866 [info ] [MainThread]: Required dependencies:
+[0m09:57:36.421865 [debug] [MainThread]: Executing "git --help"
+[0m09:57:36.483672 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m09:57:36.483672 [debug] [MainThread]: STDERR: "b''"
+[0m09:57:36.484671 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m09:57:36.484671 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m09:57:36.485672 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m09:57:36.485672 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "oms_dbt_proj", target "dev" invalid: Runtime Error
+    Could not find adapter type snowflake!
+
+Runtime Error
+  Credentials in profile "oms_dbt_proj2", target "dev" invalid: Runtime Error
+    Could not find adapter type snowflake!
+
+
+[0m09:57:36.485672 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml> not found
+
+[0m09:57:36.486672 [debug] [MainThread]: Command `dbt debug` failed at 09:57:36.486672 after 0.31 seconds
+[0m09:57:36.486672 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A2AD47C700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A2AE717730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A2AE6CF7F0>]}
+[0m09:57:36.488178 [debug] [MainThread]: Flushing usage events
+[0m09:57:37.738864 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:58:26.786613 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001550F43C700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155115F75E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155115F7CA0>]}
+
+
+============================== 09:58:26.789619 | 623511c5-688d-462e-b899-bccc112441c1 ==============================
+[0m09:58:26.789619 [info ] [MainThread]: Running with dbt=1.10.13
+[0m09:58:26.790619 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'invocation_command': 'dbt debug', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\Dylan\\.dbt', 'cache_selected_only': 'False', 'warn_error': 'None', 'static_parser': 'True', 'partial_parse': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'version_check': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'use_colors': 'True', 'printer_width': '80', 'write_json': 'True'}
+[0m09:58:26.806512 [info ] [MainThread]: dbt version: 1.10.13
+[0m09:58:26.807513 [info ] [MainThread]: python version: 3.10.0
+[0m09:58:26.807513 [info ] [MainThread]: python path: C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\py_ent\Scripts\py_ent\Scripts\python.exe
+[0m09:58:26.807513 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m09:58:26.872464 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.snowflake'
+[0m09:58:26.874464 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.snowflake'
+[0m09:58:26.874464 [info ] [MainThread]: Using profiles dir at C:\Users\Dylan\.dbt
+[0m09:58:26.875968 [info ] [MainThread]: Using profiles.yml file at C:\Users\Dylan\.dbt\profiles.yml
+[0m09:58:26.876481 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml
+[0m09:58:26.876481 [info ] [MainThread]: Configuration:
+[0m09:58:26.876481 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m09:58:26.877487 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m09:58:26.877487 [info ] [MainThread]: Required dependencies:
+[0m09:58:26.878487 [debug] [MainThread]: Executing "git --help"
+[0m09:58:26.930504 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m09:58:26.930504 [debug] [MainThread]: STDERR: "b''"
+[0m09:58:26.931503 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m09:58:26.931503 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m09:58:26.931503 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m09:58:26.932632 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "oms_dbt_proj", target "dev" invalid: Runtime Error
+    Could not find adapter type snowflake!
+
+Runtime Error
+  Credentials in profile "oms_dbt_proj2", target "dev" invalid: Runtime Error
+    Could not find adapter type snowflake!
+
+
+[0m09:58:26.932632 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml> not found
+
+[0m09:58:26.933632 [debug] [MainThread]: Command `dbt debug` failed at 09:58:26.933632 after 0.26 seconds
+[0m09:58:26.934631 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001550F43C700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155116AB730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001551165F7F0>]}
+[0m09:58:26.934631 [debug] [MainThread]: Flushing usage events
+[0m09:58:27.618162 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:58:29.932536 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195400AC6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195422ABD30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195422AA0E0>]}
+
+
+============================== 09:58:29.936040 | e6995288-8f6e-4beb-8776-a8c45ef653ca ==============================
+[0m09:58:29.936040 [info ] [MainThread]: Running with dbt=1.10.13
+[0m09:58:29.936564 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'profiles_dir': 'C:\\Users\\Dylan\\.dbt', 'invocation_command': 'dbt run', 'cache_selected_only': 'False', 'target_path': 'None', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'version_check': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'introspect': 'True', 'empty': 'False', 'log_cache_events': 'False', 'debug': 'False', 'log_format': 'default', 'use_colors': 'True', 'printer_width': '80', 'write_json': 'True'}
+[0m09:58:29.937076 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m09:58:29.938082 [debug] [MainThread]: Command `dbt run` failed at 09:58:29.938082 after 0.12 seconds
+[0m09:58:29.938082 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195400AC6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019541A3D090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195422AA0E0>]}
+[0m09:58:29.939080 [debug] [MainThread]: Flushing usage events
+[0m09:58:30.598380 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:58:32.923425 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028AEF5BC6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028AF1828370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028AF1828190>]}
+
+
+============================== 09:58:32.926429 | 1fb8b02f-c1bd-4093-88a4-5a9a078318e3 ==============================
+[0m09:58:32.926429 [info ] [MainThread]: Running with dbt=1.10.13
+[0m09:58:32.927430 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt test', 'write_json': 'True', 'log_format': 'default', 'cache_selected_only': 'False', 'no_print': 'None', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': 'C:\\Users\\Dylan\\.dbt', 'use_colors': 'True', 'printer_width': '80', 'target_path': 'None'}
+[0m09:58:32.928458 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m09:58:32.929456 [debug] [MainThread]: Command `dbt test` failed at 09:58:32.928458 after 0.11 seconds
+[0m09:58:32.929456 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028AEF5BC6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028AF1828460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028AF1828430>]}
+[0m09:58:32.929456 [debug] [MainThread]: Flushing usage events
+[0m09:58:33.666193 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:58:55.272753 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020499208760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002049A42ADA0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002049A429BD0>]}
+
+
+============================== 09:58:55.275755 | 1aaf571b-af55-49ae-b292-dedbd2d5dcad ==============================
+[0m09:58:55.275755 [info ] [MainThread]: Running with dbt=1.10.13
+[0m09:58:55.275755 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'write_json': 'True', 'invocation_command': 'dbt debug', 'profiles_dir': 'C:\\Users\\Dylan\\.dbt', 'log_format': 'default', 'warn_error': 'None', 'log_path': 'logs', 'partial_parse': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'version_check': 'True', 'use_experimental_parser': 'False', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'use_colors': 'True', 'cache_selected_only': 'False', 'target_path': 'None'}
+[0m09:58:55.293201 [info ] [MainThread]: dbt version: 1.10.13
+[0m09:58:55.293201 [info ] [MainThread]: python version: 3.10.0
+[0m09:58:55.294202 [info ] [MainThread]: python path: C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\py_ent\Scripts\py_ent\Scripts\python.exe
+[0m09:58:55.294202 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m09:58:55.361563 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.snowflake'
+[0m09:58:55.365110 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.snowflake'
+[0m09:58:55.365110 [info ] [MainThread]: Using profiles dir at C:\Users\Dylan\.dbt
+[0m09:58:55.366110 [info ] [MainThread]: Using profiles.yml file at C:\Users\Dylan\.dbt\profiles.yml
+[0m09:58:55.366110 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml
+[0m09:58:55.367111 [info ] [MainThread]: Configuration:
+[0m09:58:55.367111 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m09:58:55.368113 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m09:58:55.368113 [info ] [MainThread]: Required dependencies:
+[0m09:58:55.369111 [debug] [MainThread]: Executing "git --help"
+[0m09:58:55.424005 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m09:58:55.424005 [debug] [MainThread]: STDERR: "b''"
+[0m09:58:55.425003 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m09:58:55.425003 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m09:58:55.426002 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m09:58:55.426002 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "oms_dbt_proj", target "dev" invalid: Runtime Error
+    Could not find adapter type snowflake!
+
+Runtime Error
+  Credentials in profile "oms_dbt_proj2", target "dev" invalid: Runtime Error
+    Could not find adapter type snowflake!
+
+
+[0m09:58:55.427001 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\Dylan\Desktop\Proyectos\Wollen Labs Data Engineer Challenge\dags\dbt_project.yml> not found
+
+[0m09:58:55.428003 [debug] [MainThread]: Command `dbt debug` failed at 09:58:55.428003 after 0.27 seconds
+[0m09:58:55.428508 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020499208760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002049A429180>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002049A5CD030>]}
+[0m09:58:55.428508 [debug] [MainThread]: Flushing usage events
+[0m09:58:56.477124 [debug] [MainThread]: An error was encountered while trying to flush usage events
