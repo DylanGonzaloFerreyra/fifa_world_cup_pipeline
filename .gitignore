@@ -1,9 +1,16 @@
-.env
-
-
-#just in case
-__pycache__/
-.pytest_cache/
-.venv/
 logs/
-pg_data/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.git/
+.gitignore
+.env
+*.md
+
