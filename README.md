@@ -1,3 +1,4 @@
+
 # Data Engineer Challenge
 ## Español
 ##  Descripción general
@@ -15,8 +16,8 @@ fifa_world_cup_data_pipeline/
 ├── transformation/      # Proyecto dbt para transformar los datos
 ├── docker-compose.yml   # Infraestructura local con Docker
 ├── Dockerfile           # Imagen personalizada para Airflow + dependencias
-├──queries			     #Consultas SQL que demuestran la utilidad del dataset final
-├──postgres				 #Archivos de configuración inicial para la base de datos.
+├── queries/			     #Consultas SQL que demuestran la utilidad del dataset final
+├── postgres/				 #Archivos de configuración inicial para la base de datos.
 ├── .env.example         # Variables de entorno necesarias
 └── README.md            # Este archivo
 
@@ -158,8 +159,8 @@ fifa_world_cup_data_pipeline/
 ├── transformation/      # dbt project for data transformation
 ├── docker-compose.yml   # Local infrastructure with Docker
 ├── Dockerfile           # Custom image for Airflow + dependencies
-├── queries  			 #SQL queries demonstrating the usefulness of the final dataset
-├── postgres             #Initial database configuration files.
+├── queries/  			 #SQL queries demonstrating the usefulness of the final dataset
+├── postgres/             #Initial database configuration files.
 ├── .env.example         # Required environment variables
 └── README.md            # This file
 
@@ -249,7 +250,7 @@ docker-compose up --build
 
 -   Removed the year 2026 (incomplete data) and the `Ref.` column (used only for Wikipedia references).
 -   Renamed columns to snake_case.
--   Split `score` into `winner_goals`, `runner_up_goals`, `penalties_winner`, and `penalties_runner_up`.
+-   Split `score` into `winner_goals`, `runner_up_goals`, `winner_penalties`, and `runner_up_penalties`.
 -   Split `location` into `host_city` and `host_country`.
 
 ### PostgreSQL + dbt
@@ -284,7 +285,6 @@ docker-compose up --build
 
 -   **Scraping Tutorial:** [Jie Jenn - Web Scraping Wikipedia tables using Python](https://www.youtube.com/watch?v=ICXR9nDbudk)
 -   **Main Data Source (Scraping):** [List of FIFA World Cup finals](https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals)
-
 
 
 
