@@ -86,4 +86,4 @@ and result y los que sienta que tambien son importantes. (Con pandas y DBT).
 - Llamarlo fifa_world_cup_finals
 
 - Un reporte ligerito (notebook/SQL or a minimal dashboard)) con algunos ejemplos de consultas en el modelo analítico (hecho con los datos obtenidos del codigo final pandas).
-- Preparar un repositorio (por ahora oculto) donde el README explique todo (por ahora nada porque no hice nada), poner esquema ya sea una estructura de estrella o copo de nieve.
+- Preparar un repositorio (por ahora oculto) donde el README explique todo (por ahora nada porque no hice nada), poner esquema ya sea una estructura de estrella o copo de nieve."# fifa_world_cup_pipeline" 
