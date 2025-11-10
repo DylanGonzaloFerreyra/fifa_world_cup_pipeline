@@ -3,7 +3,14 @@
 
 #just in case
 __pycache__/
+dags/__pycache__/
 .pytest_cache/
 .venv/
 logs/
 pg_data/
+dags/logs
+
+
+transformation/target/
+transformation/dbt_packages/
+transformation/logs/
