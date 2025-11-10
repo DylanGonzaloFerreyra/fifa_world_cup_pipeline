@@ -16,8 +16,8 @@ fifa_world_cup_data_pipeline/
 ├── transformation/      # Proyecto dbt para transformar los datos
 ├── docker-compose.yml   # Infraestructura local con Docker
 ├── Dockerfile           # Imagen personalizada para Airflow + dependencias
-├── queries/			     #Consultas SQL que demuestran la utilidad del dataset final
-├── postgres/				 #Archivos de configuración inicial para la base de datos.
+├── queries/			 #Consultas SQL que demuestran la utilidad del dataset final
+├── postgres/			 #Archivos de configuración inicial para la base de datos.
 ├── .env.example         # Variables de entorno necesarias
 └── README.md            # Este archivo
 
@@ -160,7 +160,7 @@ fifa_world_cup_data_pipeline/
 ├── docker-compose.yml   # Local infrastructure with Docker
 ├── Dockerfile           # Custom image for Airflow + dependencies
 ├── queries/  			 #SQL queries demonstrating the usefulness of the final dataset
-├── postgres/             #Initial database configuration files.
+├── postgres/            #Initial database configuration files.
 ├── .env.example         # Required environment variables
 └── README.md            # This file
 
